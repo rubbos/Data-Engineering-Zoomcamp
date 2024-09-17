@@ -1,5 +1,8 @@
 FROM python:3.12
-RUN pip install pandas
+
+RUN apt-get install wget
+RUN pip install pandas sqlalchemy psycopg2
+
 WORKDIR /app
-COPY pipeline.py pipeline.py
-ENTRYPOINT [ "python3", "pipeline.py" ]
+COPY ingest_data.py ingest_data.py
+ENTRYPOINT [ "python3", "ingest_data.py" ]
